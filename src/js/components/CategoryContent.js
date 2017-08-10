@@ -4,9 +4,11 @@ import { connect } from "react-redux";
 import { fetchPatternsForCategory } from "../actions/patternActions";
 import PatternContent from "./PatternContent";
 
-@connect((store) => {
+@connect((store, ownProps) => {
     return {
-      patterns: store.pattern.patterns,
+      patterns: store.pattern.patterns.filter((pattern) => {
+        return pattern.categoryId == ownProps.category.id;
+      }),
     };
 })
 export default class CategoryContent extends React.Component {

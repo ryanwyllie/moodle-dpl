@@ -15,11 +15,13 @@ export default function reducer(state=initState, action) {
         return {...state, fetching: false, error: action.payload}
       }
       case "FETCH_PATTERN_FOR_CATEGORY_FULFILLED": {
+        const newPatterns = state.patterns.filter(pattern => pattern.categoryId != action.categoryId);
+
         return {
           ...state,
           fetching: false,
           fetched: true,
-          patterns: action.payload,
+          patterns: [...newPatterns, ...action.payload],
         }
       }
       case "ADD_PATTERN": {

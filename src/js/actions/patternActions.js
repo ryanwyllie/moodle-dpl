@@ -30,6 +30,7 @@ export function fetchPatternsForCategory(categoryId) {
     setTimeout(() => {
       dispatch({
         type: "FETCH_PATTERN_FOR_CATEGORY_FULFILLED",
+        categoryId: categoryId,
         payload: patterns.filter((pattern) => {
           return pattern.categoryId == categoryId;
         })

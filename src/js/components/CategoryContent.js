@@ -1,5 +1,8 @@
 import React from "react";
 
+import PatternContent from "./PatternContent";
+import PatternStore from "../stores/PatternStore";
+
 export default class CategoryContent extends React.Component {
   render() {
     const { category } = this.props;
@@ -10,16 +13,15 @@ export default class CategoryContent extends React.Component {
         return null;
       }
     };
-
-
-    if (category.description) {
-      category.description
-    }
+    const patternContentComponents = PatternStore.getForCategory(category.id).map((pattern) => {
+      return <PatternContent key={pattern.id} pattern={pattern} />;
+    });
 
     return (
       <div>
         <h2>{category.name}</h2>
         {stringToHTML(category.description)}
+        {patternContentComponents}
       </div>
     );
   }

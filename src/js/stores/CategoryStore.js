@@ -10,7 +10,7 @@ class CategoryStore extends EventEmitter {
         id: 1,
         route: "/test1",
         name: "Test 1",
-        description: "<p>Some <strong>HTML</strong> content</p>"
+        description: "<p>Some <strong>HTML</strong> content</p>",
       },
       {
         id: 2,
@@ -36,7 +36,7 @@ class CategoryStore extends EventEmitter {
         break;
       }
       case "RECEIVE_CATEGORIES": {
-        this.todos = action.categories;
+        this.categories = action.categories;
         this.emit("change");
         break;
       }

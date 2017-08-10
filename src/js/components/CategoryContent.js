@@ -1,11 +1,22 @@
 import React from "react";
+import { connect } from "react-redux";
 
+import { fetchPatternsForCategory } from "../actions/patternActions";
 import PatternContent from "./PatternContent";
-import PatternStore from "../stores/PatternStore";
 
+@connect((store) => {
+    return {
+      patterns: store.pattern.patterns,
+    };
+})
 export default class CategoryContent extends React.Component {
-  render() {
+  componentWillMount() {
     const { category } = this.props;
+    this.props.dispatch(fetchPatternsForCategory(category.id));
+  }
+
+  render() {
+    const { category, patterns } = this.props;
     const stringToHTML = (value) => {
       if (value) {
         return <div dangerouslySetInnerHTML={{ __html: value }} />;
@@ -13,7 +24,7 @@ export default class CategoryContent extends React.Component {
         return null;
       }
     };
-    const patternContentComponents = PatternStore.getForCategory(category.id).map((pattern) => {
+    const patternContentComponents = patterns.map((pattern) => {
       return <PatternContent key={pattern.id} pattern={pattern} />;
     });
 

@@ -1,13 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 import { HashRouter, Route } from "react-router-dom";
 
 import Layout from "./pages/Layout";
+import store from "./store";
 
 const app = document.getElementById('app');
 
 ReactDOM.render(
-  <HashRouter>
-    <Layout />
-  </HashRouter>,
+  <Provider store={store}>
+    <HashRouter>
+      <Layout />
+    </HashRouter>
+  </Provider>,
 app);

@@ -1,34 +1,12 @@
 import React from "react";
-import { Route }  from "react-router-dom";
+import { connect } from "react-redux";
+import { Route, withRouter }  from "react-router-dom";
 
 import CategoryContent from "./CategoryContent";
-import CategoryStore from "../stores/CategoryStore";
 
-export default class ContentArea extends React.Component {
-  constructor() {
-    super();
-    this.getCategories = this.getCategories.bind(this);
-    this.state = {
-      categories: CategoryStore.getAll(),
-    };
-  }
-
-  componentWillMount() {
-    CategoryStore.on("change", this.getCategories);
-  }
-
-  componentWillUnmount() {
-    CategoryStore.removeListener("change", this.getCategories);
-  }
-
-  getCategories() {
-    this.setState({
-      categories: CategoryStore.getAll(),
-    });
-  }
-
+class ContentArea extends React.Component {
   render() {
-    const { categories } = this.state;
+    const { categories } = this.props;
     const CategoryContentComponents = categories.map((category) => {
       return (
         <Route exact path={category.route} key={category.id} render={props => (
@@ -44,3 +22,13 @@ export default class ContentArea extends React.Component {
     );
   }
 }
+
+export default withRouter(
+  connect(
+    (store) => {
+      return {
+        categories: store.category.categories,
+      };
+    }
+  )(ContentArea)
+);

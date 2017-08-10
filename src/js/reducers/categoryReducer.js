@@ -2,6 +2,7 @@ const initState = {
   categories: [],
   fetching: false,
   fetched: false,
+  loading: [],
   error: null,
 };
 
@@ -43,6 +44,22 @@ export default function reducer(state=initState, action) {
         return {
           ...state,
           categories: state.categories.filter(category => category.id !== action.payload),
+        }
+      }
+      case "FETCH_PATTERN_FOR_CATEGORY": {
+        const newLoading = [...state.loading, action.categoryId]
+
+        return {
+          ...state,
+          loading: newLoading,
+        }
+      }
+      case "FETCH_PATTERN_FOR_CATEGORY_FULFILLED": {
+        const newLoading = state.loading.filter(id => id != action.categoryId)
+
+        return {
+          ...state,
+          loading: newLoading,
         }
       }
     }

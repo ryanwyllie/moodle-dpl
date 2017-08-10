@@ -25,7 +25,10 @@ export function fetchPatternsForCategory(categoryId) {
   ];
 
   return function(dispatch) {
-    dispatch({type: "FETCH_PATTERN_FOR_CATEGORY"});
+    dispatch({
+      type: "FETCH_PATTERN_FOR_CATEGORY",
+      categoryId: categoryId,
+    });
 
     setTimeout(() => {
       dispatch({

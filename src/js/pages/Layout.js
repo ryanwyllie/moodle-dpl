@@ -13,7 +13,7 @@ class Layout extends React.Component {
   }
 
   render() {
-    const { categories } = this.props;
+    const { categories, loading } = this.props;
 
     return (
       <div class="mdl-layout mdl-layout--fixed-header">
@@ -21,7 +21,7 @@ class Layout extends React.Component {
 
         <div class="mdl-grid mdl-cell mdl-cell--12-col">
           <div class="mdl-cell mdl-cell--3-col">
-            <CategoryNav categories={categories}/>
+            <CategoryNav categories={categories} loading={loading}/>
           </div>
           <div class="mdl-cell mdl-cell--9-col">
             <ContentArea />
@@ -37,6 +37,7 @@ export default withRouter(
     (store) => {
       return {
         categories: store.category.categories,
+        loading: store.category.loading,
       };
     }
   )(Layout)

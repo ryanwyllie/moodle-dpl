@@ -9,7 +9,7 @@ class ContentArea extends React.Component {
     const { categories } = this.props;
     const CategoryContentComponents = categories.map((category) => {
       return (
-        <Route exact path={category.route} key={category.id} render={props => (
+        <Route exact path={`/category/${category.id}`} key={category.id} render={props => (
           <CategoryContent category={category} />
         )}/>
       );

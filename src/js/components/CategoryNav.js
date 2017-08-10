@@ -4,7 +4,7 @@ import CategoryNavItem from "./CategoryNavItem";
 
 export default class CategoryNav extends React.Component {
   render() {
-    const { categories } = this.props;
+    const { categories, loading } = this.props;
     const navStyle = {
       marginTop: '24px',
       flexDirection: 'column',
@@ -12,7 +12,8 @@ export default class CategoryNav extends React.Component {
     };
 
     const CategoryNavItemComponents = categories.map((category) => {
-      return <CategoryNavItem key={category.id} name={category.name} link={category.route} />;
+      const isLoading = loading.includes(category.id);
+      return <CategoryNavItem key={category.id} category={category} loading={isLoading} />;
     });
 
     return (

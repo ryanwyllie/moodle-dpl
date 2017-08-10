@@ -6,21 +6,21 @@ export function fetchCategories() {
       dispatch({type: "FETCH_CATEGORIES_FULFILLED", payload: [
         {
           id: 1,
-          route: "/test1",
           name: "Test 1",
           description: "<p>Some <strong>HTML</strong> content</p>",
+          loading: false,
         },
         {
           id: 2,
-          route: "/test2",
           name: "Test 2",
           description: null,
+          loading: false,
         },
         {
           id: 3,
-          route: "/test3",
           name: "Test 3",
           description: null,
+          loading: false,
         },
       ]});
     }, 1000);
@@ -28,28 +28,22 @@ export function fetchCategories() {
 }
 
 export function addCategory(id, name, description=null) {
-  const route = name.toLowerCase().trim().replace(/\s/g, '');
-
   return {
     type: 'ADD_CATEGORY',
     payload: {
       id,
       name,
-      route,
       description,
     },
   }
 }
 
 export function updateCategory(id, name, description) {
-  const route = name.toLowerCase().trim().replace(/\s/g, '');
-
   return {
     type: 'UPDATE_CATEGORY',
     payload: {
       id,
       name,
-      route,
       description,
     },
   }

@@ -3,9 +3,10 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 import { fetchCategories } from "../actions/categoryActions";
-import Header from "../components/layout/Header";
-import CategoryNav from "../components/CategoryNav";
+import AddMenu from "../components/AddMenu";
 import ContentArea from "../components/ContentArea";
+import CategoryNav from "../components/CategoryNav";
+import Header from "../components/layout/Header";
 
 class Layout extends React.Component {
   componentWillMount() {

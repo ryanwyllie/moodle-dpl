@@ -1,4 +1,6 @@
 import React from "react";
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 export default class AddCategoryMenuItem extends React.Component {
   constructor() {
@@ -19,8 +21,9 @@ export default class AddCategoryMenuItem extends React.Component {
   render() {
     const { collapsed } = this.state;
     const containerStyle = {
-      display: 'block',
-      textAlign: 'right',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'flex-end',
       marginBottom: '10px',
     };
     const buttonStyle = {
@@ -41,9 +44,9 @@ export default class AddCategoryMenuItem extends React.Component {
         {!collapsed && <div class="mdl-tooltip is-active" style={tooltipStyle}>
           Add new category
         </div>}
-        <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored" style={buttonStyle}>
-          <i class="material-icons">add</i>
-        </button>
+        <FloatingActionButton mini={true} secondary={true} style={buttonStyle}>
+          <ContentAdd />
+        </FloatingActionButton>
       </div>
     );
   }

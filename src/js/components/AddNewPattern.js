@@ -1,7 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 import { addPattern } from "../actions/patternActions";
+import PatternContent from "./PatternContent";
 
 @connect()
 export default class AddNewPattern extends React.Component {
@@ -45,46 +48,65 @@ export default class AddNewPattern extends React.Component {
   }
 
   render() {
+    const textAreaStyle = {
+      minWidth: '256px',
+      width: '75%',
+    };
+    const buttonStyle = {
+      marginTop: '30px',
+    };
+
     return (
       <div>
         <h2>Add new pattern</h2>
         <form action="#">
-          <div class="mdl-textfield mdl-js-textfield">
-            <input class="mdl-textfield__input"
-              type="text"
-              id="name" value={this.state.name}
-              onChange={this.handleInputChange.bind(this)} />
-            <label class="mdl-textfield__label" for="name">Name...</label>
-          </div>
-          <div class="mdl-textfield mdl-js-textfield">
-            <input class="mdl-textfield__input"
-              type="text"
-              id="description"
-              value={this.state.description}
-              onChange={this.handleInputChange.bind(this)} />
-            <label class="mdl-textfield__label" for="description">Description...</label>
-          </div>
-          <div class="mdl-textfield mdl-js-textfield">
-            <input class="mdl-textfield__input"
-              type="text"
-              id="exampleHTML"
-              value={this.state.exampleHTML}
-              onChange={this.handleInputChange.bind(this)} />
-            <label class="mdl-textfield__label" for="exampleHTML">Example HTML...</label>
-          </div>
-          <div class="mdl-textfield mdl-js-textfield">
-            <input class="mdl-textfield__input"
-              type="text"
-              id="notesHTML"
-              value={this.state.notesHTML}
-              onChange={this.handleInputChange.bind(this)} />
-            <label class="mdl-textfield__label" for="notesHTML">Notes HTML...</label>
-          </div>
-          <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-            onClick={this.save.bind(this)}>
-            Save
-          </button>
+          <TextField
+            floatingLabelText="Name"
+            id="name"
+            value={this.state.name}
+            onChange={this.handleInputChange.bind(this)}
+          />
+          <br />
+          <TextField
+            floatingLabelText="Description"
+            hintText="You can input HTML here"
+            multiLine={true}
+            rowsMax={4}
+            id="description"
+            value={this.state.description}
+            onChange={this.handleInputChange.bind(this)}
+            style={textAreaStyle}
+          />
+          <br />
+          <TextField
+            floatingLabelText="Example Code"
+            hintText="You can input HTML here"
+            multiLine={true}
+            rowsMax={4}
+            id="exampleHTML"
+            value={this.state.exampleHTML}
+            onChange={this.handleInputChange.bind(this)}
+            style={textAreaStyle}
+          />
+          <br />
+          <TextField
+            floatingLabelText="Notes"
+            hintText="You can input HTML here"
+            multiLine={true}
+            rowsMax={4}
+            id="notesHTML"
+            value={this.state.notesHTML}
+            onChange={this.handleInputChange.bind(this)}
+            style={textAreaStyle}
+          />
+          <br />
+          <RaisedButton label="Save" onClick={this.save.bind(this)} style={buttonStyle} />
         </form>
+
+        <br />
+        <br />
+        <h3>Here's what it will look like</h3>
+        <PatternContent pattern={this.state} />
       </div>
     );
   }

@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-
-import LoadingSpinner from "./LoadingSpinner";
+import CircularProgress from 'material-ui/CircularProgress';
 
 export default class CategoryNavItem extends React.Component {
   render() {
@@ -22,7 +21,7 @@ export default class CategoryNavItem extends React.Component {
     let loadingElement = null;
 
     if (loading) {
-      loadingElement = <LoadingSpinner width="20px" height="20px" style={spinnerStyle} />;
+      loadingElement = <CircularProgress size={24} style={spinnerStyle} />
     }
 
     return (

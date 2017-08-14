@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom'
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 export default class AddPatternMenuItem extends React.Component {
   constructor() {
@@ -21,8 +23,9 @@ export default class AddPatternMenuItem extends React.Component {
     const { to } = this.props;
     const { collapsed } = this.state;
     const containerStyle = {
-      display: 'block',
-      textAlign: 'right',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'flex-end',
     };
     const tooltipStyle = {
       position: 'relative',
@@ -39,9 +42,11 @@ export default class AddPatternMenuItem extends React.Component {
         {!collapsed && <div class="mdl-tooltip is-active" style={tooltipStyle}>
           Add new pattern
         </div>}
-        <Link to={to} class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
-          <i class="material-icons">add</i>
-        </Link>
+        <FloatingActionButton secondary={true}>
+          <Link to={to}>
+            <ContentAdd />
+          </Link>
+        </FloatingActionButton>
       </div>
     );
   }
